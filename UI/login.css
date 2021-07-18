@@ -110,7 +110,7 @@ html {
     }
 
     .submitButton {
-        margin-top: calc(100vh - 125%);
+        margin-top: 25vh;
         float: right;
         margin-right: 10%;
     }
