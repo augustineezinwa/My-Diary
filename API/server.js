@@ -1,8 +1,12 @@
 // imports express
 import express from 'express';
+import index from './Routes';
 
 // instantiates our server from express, and name it server
 const server = express();
+
+
+server.use('/', index);
 
 // a function that prints to the command line that our server is running
 const displayServerMessage = () => console.log('My Diary API server is listening on Port 8888');
