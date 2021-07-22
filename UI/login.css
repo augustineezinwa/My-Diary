@@ -32,9 +32,15 @@ html {
 
 }
 
+.pageTitle {
+    color: #D1D1D1;
+    text-align: center;
+    padding-top: 8%;
+}
+
 
 .emailSection {
-    margin-top: 87.5px;
+    margin-top: 10%;
     margin-left: 9%;
 }
 
