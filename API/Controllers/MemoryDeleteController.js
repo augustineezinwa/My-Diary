@@ -1,5 +1,4 @@
-import memories  from '../Models/memories';
-
+import memories  from '../Data/memories';
 class MemoryDeleteController {
 
     static deleteMemory(request, response)
