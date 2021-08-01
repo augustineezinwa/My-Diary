@@ -1,15 +1,22 @@
-import memories  from '../Data/memories';
+import models from '../models';
+
+const { Memory } = models;
+
 class MemoryDeleteController {
+  static async deleteMemory(request, response) {
+    try {
+      await Memory.destroy({
+        where: {
+          id: request.params.id,
+          userId: request.userWallet.id
+        }
+      });
 
-    static deleteMemory(request, response)
-    {
-      const remainingMemories = memories.filter(x => x.a != '2');
-
-       memories.splice(0, memories.length);
-       memories.push(...remainingMemories);
-
-       return response.json({ 'message' : 'memory deleted'});
+      return response.json({ message: 'memory deleted' });
+    } catch (error) {
+      return response.json({ message: error.toString() });
     }
+  }
 }
 
 export default MemoryDeleteController;

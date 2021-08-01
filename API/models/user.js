@@ -10,14 +10,19 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+     const { Memory } = models;
+     User.hasMany(Memory, { foreignKey: 'userId' });
     }
   };
+
   User.init({
     name: DataTypes.STRING,
     email: {
       type: DataTypes.STRING,
-      unique: true
+      unique: true,
+      validate: {
+        isEmail: true,
+      }
     },
     password: DataTypes.STRING
   }, {
