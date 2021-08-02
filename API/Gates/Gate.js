@@ -7,7 +7,6 @@ const { Memory } = models;
 
 class Gate {
   static collectErrors(request, response, next) {
-    delete request.resourceBag;
     const errors = validationResult(request);
 
     if (!errors.isEmpty()) {
