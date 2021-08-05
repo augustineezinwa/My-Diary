@@ -3,7 +3,6 @@ import decodeToken from '../security/decodeToken';
 import formatErrors from '../helpers/formatErrors';
 import models from '../models';
 
-const { Memory } = models;
 
 class Gate {
   static collectErrors(request, response, next) {
@@ -36,21 +35,25 @@ class Gate {
 
   static async blockAccessToAnotherUserResource(request, response, next) {
     try {
-      const resource = await Memory.findOne({
-        where: { userId: request.userWallet.id, id: request.params.id },
-      });
+      const [[result]] = await models.sequelize.query(
+        'SELECT * FROM "Memories" WHERE id = :memoryId AND "userId" = :userId LIMIT 1',
+        {
+          replacements: { memoryId: request.params.id, userId: request.userWallet.id },
+        }
+      );
 
-      if (!resource) {
+      if (!result) {
         return response.status(403).json({
           message: 'You don\'t have access to this resource'
         });
       }
-      request.resourceBag = resource;
+      request.resourceBag = result;
     
       return next();
     } catch (error) {
+      
       return response.status(500).json({
-        message: 'Internal server error', error
+        message: 'Internal server error', error: error.toString()
       });
     }
   }
