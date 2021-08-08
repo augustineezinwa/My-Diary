@@ -9,12 +9,12 @@
 }
 
 .nav {
-    height: 10vh;
+    height: 53px;
     width: 100%;
     background-color: #ffff;
     top: 0;
     position: fixed;
-    padding-top: 1%;
+    margin-top: 1%;
   }
   
   .nav-header {
