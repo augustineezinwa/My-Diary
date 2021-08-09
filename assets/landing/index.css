@@ -17,10 +17,9 @@ html {
 .backgroundImage {
   height: 80vh;
   width:100%;
-  background-image:url('svgs/fly.svg');
+  background-image:url('/svgs/fly.svg');
   background-position: center;
   background-repeat: no-repeat;
-  background-size: contain;
   padding-top: 25vh;
   padding-left: 5%;
   
@@ -65,7 +64,6 @@ html {
     width: 100%;
     margin: 0;
     padding: 8% 0 0 0;
-    height: 85vh;
 }
 
 

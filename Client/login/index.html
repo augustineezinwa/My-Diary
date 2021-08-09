@@ -3,8 +3,10 @@
 <head>
     <title>My Diary</title>
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
-    <link rel="stylesheet" type="text/css" href="login.css">
-    <link rel ="stylesheet" type = "text/css" href = "nav.css">
+    <link rel="stylesheet" type="text/css" href="/login/index.css">
+    <link rel ="stylesheet" type = "text/css" href = "/nav/nav.css">
+
+    <link rel="stylesheet" href="/alerts/css/style.css" />
 
 </head>
 
@@ -12,7 +14,7 @@
     <div class="nav">
         <div class="nav-header">
             <div class="nav-title">
-                <a href="/">  <img src="svgs/diary.svg" class="logo" /></a>
+                <object data="/svgs/diary.svg" class="logo"></object>
             </div>
         </div>
 
@@ -62,7 +64,7 @@
 
 
 
-                <button type="submit" class="submitButton"><span class="submitButtonText">Login</span></button>
+                <button type="submit" id="loginButton" class="submitButton"><span class="submitButtonText">Login</span></button>
 
 
             </form>
@@ -71,7 +73,8 @@
 
     </div>
 
-
+    <script src="/alerts/js/cute-alert.js"></script>
+    <script src="/login/index.js"></script>
 </body>
 
 
