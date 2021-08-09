@@ -10,9 +10,11 @@ import LoginRouter from './LoginRouter';
 import MemoryUpdateRouter from './MemoryUpdateRouter';
 import MemoryViewRouter from './MemoryViewRouter';
 import LoginPageRouter from './LoginPageRouter';
+import DashboardPageRouter from './DashboardPageRouter';
+import TokenValidationRouter from './TokenValidationRouter';
 
 const index = express.Router();
-
+index.use(express.static(path.join(__dirname, '/../../assets')));
 index.use(express.json());
 index.use(
   HomePageRouter,
@@ -25,7 +27,9 @@ index.use(
   LoginRouter,
   MemoryUpdateRouter,
   MemoryDeleteRouter,
-  MemoryViewRouter
+  MemoryViewRouter,
+  DashboardPageRouter,
+  TokenValidationRouter,
 );
 
 export default index;

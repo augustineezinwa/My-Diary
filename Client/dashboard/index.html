@@ -1,0 +1,85 @@
+<html>
+
+<head>
+    <title>My Diary</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <script type="module" async src="/security/index.js"></script>
+    <link rel="stylesheet" type="text/css" href="/dashboard/index.css">
+    <link rel ="stylesheet" type = "text/css" href = "/nav/nav.css">
+    <link rel="stylesheet" href="/alerts/css/style.css" />
+
+</head>
+
+<body>
+    <div>
+    <div class="nav">
+        <div class="nav-header">
+            <div class="nav-title">
+                <a href="/dashboard"><img src="/svgs/diary.svg" class="logo" /></a>
+            </div>
+        </div>
+
+
+        <div class="nav-btn">
+            <input type="checkbox" id="nav-check">
+
+            <label for="nav-check">
+                <span class="dashOne"></span>
+                <span class="dashTwo"></span>
+                <span class="dashThree"></span>
+            </label>
+
+            <ul class="nav-links">
+                <a href="/login">Logout</a>
+            </ul>
+
+        </div>
+
+        </div>
+
+
+
+
+    <div class="container">
+
+        <div class="memoryDashboard">
+
+            <div class="dashboardLeftSection">
+                <!-- Background image here -->
+    
+    
+            </div>
+
+            <div class="dashboardRightSection">
+            <div class="welcomeText"><p>How was your day ?</p></div>
+            <div class="welcomeButton"><button class="editButton"><span><img  class="pencil" src="/svgs/edit.svg" alt="tell a story"></span><span class="editButtonText">Tell me</span></button></div>
+           </div>
+
+
+
+        </div>
+
+        <div class="memoryHeader">
+             My Memories
+        </div>
+
+        <div class="memoryList" id="memoryList" role="listbox">
+          
+        
+
+        </div>
+
+     
+
+
+
+    </div>
+    </div>
+
+    <script src="/alerts/js/cute-alert.js"></script>
+    <script src="/dashboard/index.js"></script>
+</body>
+
+
+
+</html>
