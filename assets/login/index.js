@@ -1,4 +1,3 @@
-window.localStorage.removeItem('token');
 /**
  * get email from email field
  */
@@ -70,8 +69,6 @@ const loginUser = async (event) => {
       message: result.message,
       timer: 2000
     });
-
-    window.localStorage.setItem('token', result.token);
 
     // redirect user to dashboard
     window.location.href = '/dashboard';
