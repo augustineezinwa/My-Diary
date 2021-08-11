@@ -13,6 +13,7 @@ import MemoryViewRouter from './MemoryViewRouter';
 import LoginPageRouter from './LoginPageRouter';
 import DashboardPageRouter from './DashboardPageRouter';
 import SignoutRouter from './SignoutRouter';
+import MemoryPageRouter from './MemoryPageRouter';
 
 const index = express.Router();
 index.use(express.static(path.join(__dirname, '/../../assets')));
@@ -32,6 +33,7 @@ index.use(
   MemoryViewRouter,
   DashboardPageRouter,
   SignoutRouter,
+  MemoryPageRouter
 );
 
 export default index;

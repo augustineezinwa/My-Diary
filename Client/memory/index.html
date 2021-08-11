@@ -1,0 +1,77 @@
+<html>
+
+<head>
+    <title>My Diary</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" type="text/css" href="/memory/index.css">
+    <link rel ="stylesheet" type = "text/css" href = "/nav/nav.css">
+
+</head>
+
+<body>
+    <div class="nav">
+        <div class="nav-header">
+            <div class="nav-title">
+                <a href="/dashboard"><img src="/svgs/diary.svg" class="logo" /></a>
+            </div>
+        </div>
+
+
+        <div class="nav-btn">
+            <input type="checkbox" id="nav-check">
+
+            <label for="nav-check">
+                <span class="dashOne"></span>
+                <span class="dashTwo"></span>
+                <span class="dashThree"></span>
+            </label>
+
+            <ul class="nav-links">
+                <a href="/signout">Sign out</a>
+            </ul>
+
+        </div>
+
+        </div>
+
+
+
+
+    <div class="container">
+
+        <div class="memoryDashboard" id="memoryDashboard">
+
+
+
+        </div>
+
+        <div class="memoryTitle">
+            <p class="memoryCreatedDate" id="date"></p>
+            <p class="title" id="title"> </p>
+        </div>
+
+        <div class="story">
+          <p class="storyText" id="storyText">
+        
+          </p>
+        </div>
+
+
+        <div class="buttonSection"> 
+
+            <a href="" id="memoryEditLink"><button class="editButton"><span><img  class="pencil" src="/svgs/edit.svg" alt="edit"></span><span class="editButtonText">Edit</span></button></a>
+
+        </div>
+     
+
+
+
+    </div>
+
+    <script src="/alerts/js/cute-alert.js"></script>
+    <script src="/memory/index.js"></script>
+</body>
+
+
+
+</html>
