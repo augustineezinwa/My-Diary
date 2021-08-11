@@ -44,7 +44,7 @@ const fetchMemory = async () => {
     document.getElementById('storyText').textContent = result.story;
     document.getElementById('memoryDashboard').style.backgroundImage = `url(${result.picture || '/svgs/fly.svg'} )`;
     document.getElementById('date').textContent = new Date(result.createdAt).toDateString();
-    document.getElementById('memoryEditLink').href = `/memorychange/${memoryId}`;
+    document.getElementById('memoryEditLink').href = `/memory/update/${memoryId}`;
   }
 };
 

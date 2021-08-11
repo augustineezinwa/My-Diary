@@ -14,6 +14,9 @@ import LoginPageRouter from './LoginPageRouter';
 import DashboardPageRouter from './DashboardPageRouter';
 import SignoutRouter from './SignoutRouter';
 import MemoryPageRouter from './MemoryPageRouter';
+import MemoryCreatePageRouter from './MemoryCreatePageRouter';
+import MemoryUpdatePageRouter from './MemoryUpdatePageRouter';
+import PhotoUploadRouter from './PhotoUploadRouter';
 
 const index = express.Router();
 index.use(express.static(path.join(__dirname, '/../../assets')));
@@ -33,7 +36,10 @@ index.use(
   MemoryViewRouter,
   DashboardPageRouter,
   SignoutRouter,
-  MemoryPageRouter
+  MemoryPageRouter,
+  MemoryCreatePageRouter,
+  MemoryUpdatePageRouter,
+  PhotoUploadRouter
 );
 
 export default index;
