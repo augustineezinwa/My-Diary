@@ -26,11 +26,11 @@ html {
 
 .memoryDashboard {
     margin: 0 auto;
-    height: 35vh;
+    height: 45vh;
     width: 100%;
-    background-position: center;
+    background-position: fixed;
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: cover;
     object-fit: contain;
     margin-top: 15vh;
 }

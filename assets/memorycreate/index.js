@@ -1,10 +1,55 @@
+let pictureUrl;
+const pictureInput = document.getElementById('myfile');
+
+const uploadFile = (event) => {
+  const reader = new FileReader();
+
+  reader.onload = () => {
+    pictureUrl = reader.result;
+  };
+  reader.readAsDataURL(event.target.files[0]);
+};
+
+
 const createMemory = async (event) => {
   event.preventDefault();
 
   const title = document.getElementById('title').value;
   const mood = document.getElementById('mood').value;
   const story = document.getElementById('story').value;
-  const picture = '';
+ 
+  /**
+   * upload picture
+   *
+   */
+  let uploadResponse;
+  let photoUrl;
+  if (pictureUrl) {
+    uploadResponse = await fetch(`${window.location.origin}/api/v1/image/upload`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+      },
+      body: JSON.stringify({ picture: pictureUrl })
+    });
+
+    if (!uploadResponse.ok) {
+      await cuteToast({
+        type: 'error', // or 'info', 'error', 'warning'
+        message: 'Image upload failed!',
+        timer: 2500
+      });
+      return null;
+    }
+    await cuteToast({
+      type: 'info', // or 'info', 'error', 'warning'
+      message: 'Image uploaded!',
+      timer: 2500
+    });
+
+    const imageUploadresult = await uploadResponse.json();
+    photoUrl = imageUploadresult.url;
+  }
 
   /**
      * call create memory API
@@ -19,14 +64,14 @@ const createMemory = async (event) => {
       title,
       story,
       mood,
-      picture
+      picture: photoUrl || ''
     })
   });
 
   const result = await response.json();
 
   if (response.status === 422) {
-      const errors = result.errors.title || result.errors.mood || result.errors.story;
+    const errors = result.errors.title || result.errors.mood || result.errors.story;
 
     /**
        * User has made mistake in input & we will bounce him back
@@ -65,6 +110,9 @@ const createMemory = async (event) => {
     window.location.href = `/memories/${result.memory.id}`;
   }
 };
+
+
+pictureInput.addEventListener('change', uploadFile);
 
 const submitButton = document.getElementById('submitButton');
 submitButton.addEventListener('click', createMemory);

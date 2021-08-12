@@ -123,9 +123,9 @@ html {
     object-fit:contain;
     background-position: center;
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: cover;
 
-    height: 18vh;
+    height: 20vh;
     width: 100%;
 }
 
@@ -145,7 +145,7 @@ html {
     border: 1px solid #FDAF7F;
     border-radius: 20px;
     margin-right: 6%;
-    padding: 4% 6%;
+    padding: 2% 4%;
 
     font-style: normal;
     font-weight: normal;

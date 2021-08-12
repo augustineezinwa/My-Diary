@@ -20,7 +20,7 @@ import PhotoUploadRouter from './PhotoUploadRouter';
 
 const index = express.Router();
 index.use(express.static(path.join(__dirname, '/../../assets')));
-index.use(express.json());
+index.use(express.json({ limit: '50mb' }));
 index.use(cookieParser());
 index.use(
   HomePageRouter,
