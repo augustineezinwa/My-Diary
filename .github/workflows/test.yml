@@ -12,6 +12,7 @@ env:
   NODE_VERSION: 14.11.0
   PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
   TEST_DB_URL: ${{ secrets.TEST_DB_URL }}
+  CLOUDINARY_URL: ${{ secrets.CLOUDINARY_URL }}
 
 jobs:
   automation-tests:
