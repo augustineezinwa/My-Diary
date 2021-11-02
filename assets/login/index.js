@@ -64,16 +64,14 @@ const loginUser = async (event) => {
   }
 
   if (response.status === 200) {
-    cuteToast({
+    await cuteToast({
       type: 'success', // or 'info', 'error', 'warning'
       message: result.message,
-      timer: 50000
+      timer: 2000
     });
 
-    window.localStorage.setItem('token', result.token);
-
     // redirect user to dashboard
-    window.location.href = '/';
+    window.location.href = '/dashboard';
   }
 };
 

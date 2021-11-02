@@ -11,11 +11,12 @@ class LoginController {
     const userFound = await User.findOne({ where: { email } });
 
     const isUserFound = userFound && bcrypt.compareSync(password, userFound.password);
-
+  
     if (isUserFound) {
+      const token = createToken(userFound.id);
+      response.cookie('token', token, { httpOnly: true });
       return response.json({
         message: 'you are signed in!',
-        token: createToken(userFound.id)
       });
     }
 

@@ -13,9 +13,10 @@ class SignupController {
         password: bcrypt.hashSync(request.body.password),
       });
 
+      const token = createToken(newUser.id);
+      response.cookie('token', token, { httpOnly: true });
       return response.status(201).json({
         message: 'You have signed up',
-        token: createToken(newUser.id),
       });
     } catch (e) {
       return response.status(500).json({ message: e.toString() });
