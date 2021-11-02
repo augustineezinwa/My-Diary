@@ -8,10 +8,8 @@ class PhotoUploadController {
     try {
       const result = await cloudinary.v2.uploader.upload(request.body.picture);
 
-      console.log(result);
       return response.json({ url: result.secure_url });
     } catch (e) {
-      console.log(e)
       return response.status(500).json({
 
         error: e.toString(),
