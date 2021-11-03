@@ -3,8 +3,8 @@
 <head>
     <title>My Diary</title>
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
-    <link rel="stylesheet" type="text/css" href="index.css">
-    <link rel ="stylesheet" type = "text/css" href = "../assets/nav/nav.css">
+    <link rel="stylesheet" type="text/css" href="/signup/index.css">
+    <link rel ="stylesheet" type = "text/css" href = "/nav/nav.css">
 
 </head>
 
@@ -12,7 +12,7 @@
     <div class="nav">
         <div class="nav-header">
             <div class="nav-title">
-                <object data="../assets/svgs/diary.svg" class="logo"></object>
+                <a href="/"><img src="/svgs/diary.svg" class="logo" /></a>
             </div>
         </div>
 
@@ -27,7 +27,7 @@
             </label>
 
             <ul class="nav-links">
-                <a href="login.html">Login</a>
+                <a href="/login">Login</a>
             </ul>
 
         </div>
@@ -55,14 +55,15 @@
 
                 <div class="passwordSection">
                     <label for"password" class="passwordText">Password</label> <br>
-                    <input type="text" id="password" name="password" class="passwordInput"
+                    <input type="password" id="password" name="password" class="passwordInput"
                         placeholder="Please enter your password"> <br>
 
                 </div>
 
 
-
-                <button type="submit" class="submitButton"><span class="submitButtonText">Sign up</span></button>
+               <div class="submitSection">
+                <button type="submit" class="submitButton">Sign up</button>
+                </div>
 
 
             </form>
