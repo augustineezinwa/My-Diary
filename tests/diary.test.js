@@ -17,6 +17,8 @@ const createMemoryUrl = '/api/v1/memories';
 
 const anotherUserWallet = {};
 const userWallet = {};
+const getToken = (responseObject) => responseObject.header['set-cookie'][0].split(';')[0].substr(6);
+const getCookie = (responseObject) => responseObject.header['set-cookie'][0];
 
 it('intro API route works', (done) => {
   chai
@@ -99,8 +101,11 @@ describe('SIGN ~ UP', () => {
       })
       .end(async (request, response) => {
         response.status.should.eql(201);
-        response.body.token.should.be.a('string');
-        userWallet.token = response.body.token;
+        const token = getToken(response);
+        const cookie = getCookie(response);
+        token.should.be.a('string');
+        userWallet.token = token;
+        userWallet.cookie = cookie;
 
         // check for user in DB
         const user = await User.findOne({
@@ -125,8 +130,13 @@ describe('SIGN ~ UP', () => {
       })
       .end(async (request, response) => {
         response.status.should.eql(201);
-        response.body.token.should.be.a('string');
-        anotherUserWallet.token = response.body.token;
+
+        const token = getToken(response);
+        const cookie = getCookie(response);
+        token.should.be.a('string');
+        anotherUserWallet.token = token;
+        anotherUserWallet.cookie = cookie;
+    
 
         // check for user in DB
         const user = await User.findOne({
@@ -197,7 +207,8 @@ describe('LOGIN ~', () => {
       })
       .end((request, response) => {
         response.status.should.eql(200);
-        response.body.token.should.be.a('string');
+        const token = getToken(response);
+        token.should.be.a('string');
         done();
       });
   });
@@ -217,7 +228,7 @@ describe('CREATE MEMORY', () => {
     chai
       .request(server)
       .post(createMemoryUrl)
-      .set('authorization', userWallet.token)
+      .set({ Cookie: userWallet.cookie })
       .send(memory)
       .end(async (request, response) => {
         response.status.should.eql(201);
@@ -250,7 +261,7 @@ describe('CREATE MEMORY', () => {
     chai
       .request(server)
       .post(createMemoryUrl)
-      .set('authorization', anotherUserWallet.token)
+      .set({ Cookie: anotherUserWallet.cookie })
       .send(memory)
       .end(async (request, response) => {
         response.status.should.eql(201);
@@ -277,7 +288,7 @@ describe('CREATE MEMORY', () => {
     chai
       .request(server)
       .post(createMemoryUrl)
-      .set('authorization', userWallet.token)
+      .set({ Cookie: userWallet.cookie })
       .end((request, response) => {
         response.status.should.eql(422);
         response.body.should.eql({
@@ -316,7 +327,7 @@ describe('FETCH A MEMORY', () => {
     chai
       .request(server)
       .get('/api/v1/memories/1')
-      .set('authorization', userWallet.token)
+      .set({ Cookie: userWallet.cookie })
       .end(async (request, response) => {
         response.status.should.eql(200);
 
@@ -335,7 +346,7 @@ describe("FETCH ALL USER'S MEMORIES", () => {
     chai
       .request(server)
       .get('/api/v1/memories')
-      .set('authorization', userWallet.token)
+      .set({ Cookie: userWallet.cookie })
       .end(async (request, response) => {
         response.status.should.eql(200);
 
@@ -361,7 +372,7 @@ describe('UPDATE A MEMORY', () => {
     chai
       .request(server)
       .put('/api/v1/memories/1')
-      .set('authorization', userWallet.token)
+      .set({ Cookie: userWallet.cookie })
       .send(memory)
       .end(async (request, response) => {
         response.status.should.eql(200);
@@ -385,7 +396,7 @@ describe('DELETE A MEMORY', () => {
     chai
       .request(server)
       .delete('/api/v1/memories/1')
-      .set('authorization', userWallet.token)
+      .set({ Cookie: userWallet.cookie })
       .end(async (request, response) => {
         response.status.should.eql(200);
         response.body.should.eql({ message: 'memory deleted' });
@@ -409,7 +420,7 @@ describe('Permissions', () => {
     chai
       .request(server)
       .delete('/api/v1/memories/2')
-      .set('authorization', userWallet.token)
+      .set({Cookie: userWallet.cookie })
       .end((request, response) => {
         response.status.should.eql(403);
         response.body.should.eql({
@@ -422,7 +433,7 @@ describe('Permissions', () => {
     chai
       .request(server)
       .put('/api/v1/memories/2')
-      .set('authorization', userWallet.token)
+      .set({ Cookie: userWallet.cookie })
       .end((request, response) => {
         response.status.should.eql(403);
         response.body.should.eql({
@@ -435,7 +446,7 @@ describe('Permissions', () => {
     chai
       .request(server)
       .get('/api/v1/memories/2')
-      .set('authorization', userWallet.token)
+      .set({ Cookie: userWallet.cookie })
       .end((request, response) => {
         response.status.should.eql(403);
         response.body.should.eql({
@@ -458,7 +469,7 @@ describe('Authorization', () => {
       .end((request, response) => {
         response.status.should.eql(401);
         response.body.should.eql({
-          message: 'Not authorized!, No credentials',
+          message: 'Not authorized!, Invalid credentials',
         });
         done();
       });
@@ -470,7 +481,7 @@ describe('Authorization', () => {
       .end((request, response) => {
         response.status.should.eql(401);
         response.body.should.eql({
-          message: 'Not authorized!, No credentials',
+          message: 'Not authorized!, Invalid credentials',
         });
         done();
       });
@@ -483,7 +494,7 @@ describe('Authorization', () => {
       .end((request, response) => {
         response.status.should.eql(401);
         response.body.should.eql({
-          message: 'Not authorized!, No credentials',
+          message: 'Not authorized!, Invalid credentials',
         });
         done();
       });
@@ -496,7 +507,7 @@ describe('Authorization', () => {
       .end((request, response) => {
         response.status.should.eql(401);
         response.body.should.eql({
-          message: 'Not authorized!, No credentials',
+          message: 'Not authorized!, Invalid credentials',
         });
         done();
       });
