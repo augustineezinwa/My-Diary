@@ -49,23 +49,24 @@ html {
     margin-left: 9%;
 }
 
+.submitSection {
+    text-align: center;
+}
+
 .submitButton {
-    margin-left: 9%;
     margin-top: 45px;
     width: 156px;
     height: 45px;
     border: none;
     background: #FDAF7F;
     border-radius: 20px;
-}
-
-.submitButtonText {
     font-style: normal;
     font-weight: bold;
     font-size: 24px;
     line-height: 28px;
     color: #FFFFFF;
 }
+
 
 .emailInput {
     width: 80%;
@@ -74,6 +75,11 @@ html {
     border: none;
     border-bottom: 1px solid #D1D1D1;
     outline: none;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 21px;
+    color: #797979;
 }
 
 .emailInput::placeholder, .passwordInput::placeholder {
@@ -91,6 +97,11 @@ html {
     border: none;
     border-bottom: 1px solid #D1D1D1;
     outline: none;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 21px;
+    color: #797979;
 }
 
 .container {
