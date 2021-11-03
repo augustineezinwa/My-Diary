@@ -1,6 +1,6 @@
 const formatErrors = (errors) => {
   const formattedErrors = {};
-  errors.array().forEach((error) => {
+  errors.array({ onlyFirstError: true }).forEach((error) => {
     if (!formattedErrors[error.param]) formattedErrors[error.param] = [];
     formattedErrors[error.param].push({ message: error.msg });
   });

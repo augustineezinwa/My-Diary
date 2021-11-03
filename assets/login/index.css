@@ -40,7 +40,7 @@ html {
 
 
 .emailSection {
-    margin-top: 10%;
+    margin-top: 25px;
     margin-left: 9%;
 }
 
@@ -50,11 +50,11 @@ html {
 }
 
 .submitSection {
+    margin-top: 40px;
     text-align: center;
 }
 
 .submitButton {
-    margin-top: 45px;
     width: 156px;
     height: 45px;
     border: none;
@@ -125,9 +125,16 @@ html {
     }
 
     .submitButton {
-        margin-top: 25vh;
-        float: right;
         margin-right: 10%;
+    }
+
+    .submitSection {
+        margin-top: 20%;
+        text-align: right;
+    }
+
+    .passwordInput, .emailInput {
+        width: 90%;
     }
 
   }
