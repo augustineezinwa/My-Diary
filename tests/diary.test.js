@@ -60,29 +60,17 @@ describe('SIGN ~ UP', () => {
             email: [
               {
                 message: 'Please provide a valid email',
-              },
-              {
-                message: 'Expected a string but received a undefined',
-              },
+              }
             ],
             name: [
               {
                 message: 'Please provide a name',
               },
-              {
-                message: 'Name must contain only letters',
-              },
             ],
             password: [
               {
                 message: 'Please enter password',
-              },
-              {
-                message: 'Your password must be at least 8 characters',
-              },
-              {
-                message: 'Your password must contain a letter and a number',
-              },
+              }
             ],
           },
         });
@@ -296,11 +284,7 @@ describe('CREATE MEMORY', () => {
             mood: [
               {
                 message: 'Please enter a valid mood',
-              },
-              {
-                message:
-                  'Please select a predefined mood, [happy, sad, excited]',
-              },
+              }
             ],
             story: [
               {

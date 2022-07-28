@@ -5,6 +5,7 @@
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" type="text/css" href="/signup/index.css">
     <link rel ="stylesheet" type = "text/css" href = "/nav/nav.css">
+    <link rel="stylesheet" href="/alerts/css/style.css" />
 
 </head>
 
@@ -46,6 +47,14 @@
                 <h1 class="pageTitle">Sign up</h1>
                 <div class="emailSection">
 
+                    <label for="email" class="emailText">Name</label> <br>
+                    <input type="text" id="name" name="email" class="emailInput" placeholder="Please enter your name">
+                    <br>
+
+                </div>
+
+                <div class="emailSection">
+
                     <label for="email" class="emailText">Email</label> <br>
                     <input type="text" id="email" name="email" class="emailInput" placeholder="Please enter your email">
                     <br>
@@ -62,7 +71,7 @@
 
 
                <div class="submitSection">
-                <button type="submit" class="submitButton">Sign up</button>
+                <button type="submit" id="signupButton" class="submitButton">Sign up</button>
                 </div>
 
 
@@ -72,7 +81,8 @@
 
     </div>
 
-
+    <script src="/alerts/js/cute-alert.js"></script>
+    <script src="/signup/index.js"></script>
 </body>
 
 
