@@ -19,6 +19,7 @@
     "@babel/register": "^7.14.5",
     "babel-plugin-inline-json-import": "^0.3.2",
     "@cloudinary/base": "^1.0.0-beta.4",
+    "aws-sdk": "^2.1368.0",
     "bcrypt-nodejs": "0.0.3",
     "cloudinary": "^1.26.3",
     "cookie-parser": "^1.4.5",
