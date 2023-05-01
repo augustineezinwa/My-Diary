@@ -3,8 +3,10 @@ name: Deploy to Elastic Beanstalk
 on:
   push:
     branches:
+      - dev
       - main
-
+  pull_request:
+  
 jobs:
   deploy:
     runs-on: ubuntu-latest
