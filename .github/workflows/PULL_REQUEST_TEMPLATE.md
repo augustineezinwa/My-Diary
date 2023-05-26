@@ -11,7 +11,6 @@ If it is a bug fix, add the `BUG` label -->
 
 ## Relevant tickets
 
-- https://app.clickup.com/t/866abv1pp
 
 ## Screenshot/video link
 
