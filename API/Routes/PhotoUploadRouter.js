@@ -5,6 +5,6 @@ import PhotoUploadController from '../Controllers/PhotoUploadController.js';
 const PhotoUploadRouter = express.Router();
 
 PhotoUploadRouter.post('/api/v1/image/upload', PhotoUploadController.uploadPhoto);
-PhotoUploadRouter.get('/api/v1/image/:id', PhotoUploadController.getPhoto);
+PhotoUploadRouter.get('/api/v1/image/picture/:id', PhotoUploadController.getPhoto);
 
 export default PhotoUploadRouter;

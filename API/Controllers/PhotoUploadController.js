@@ -27,17 +27,15 @@ class PhotoUploadController {
       await s3Client.send(
         new PutObjectCommand({
           Bucket: bucketName,
-          Key: fileUniqueKey,
+          Key: `picture/${fileUniqueKey}`,
           Body: Buffer.from(matches[2], 'base64'),
           ContentEncoding: 'base64',
           ContentType: type,
         })
       );
-
-      console.log(`https://${bucketName}.s3.${REGION}.amazonaws.com/${fileUniqueKey}`);
-      return response.json({ url: `/api/v1/image/${fileUniqueKey}` });
+      return response.json({ url: `/api/v1/image/picture/${fileUniqueKey}` });
     } catch (e) {
-      console.log(e);
+      console.error(e);
       return response.status(500).json({
         error: e.toString(),
       });
@@ -48,12 +46,13 @@ class PhotoUploadController {
     try {
       const bucketName = process.env.AWS_BUCKET_NAME;
       const { id } = request.params;
+      console.log(id);
 
       // Set the desired request headers
 
       const res = await s3Client.getObject({
         Bucket: bucketName,
-        Key: id,
+        Key: `picture/${id}`,
       });
       const bodyStream = res.Body;
 
