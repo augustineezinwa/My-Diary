@@ -17,12 +17,12 @@ const createMemoryGateConfig = {
     },
   },
 
-  picture: {
-    custom: {
-      errorMessage: 'Please enter a valid url',
-      options: (value) => (value ? isURL(value) : true)
-    },
-  },
+  // picture: {
+  //   custom: {
+  //     errorMessage: 'Please enter a valid url',
+  //     options: (value) => (value ? isURL(value) : true)
+  //   },
+  // },
 
   mood: {
     notEmpty: {

@@ -1,13 +1,18 @@
 let pictureUrl;
+let fileName;
 const pictureInput = document.getElementById('myfile');
+console.log(pictureInput, 'pictureInput');
 
 const uploadFile = (event) => {
   const reader = new FileReader();
 
   reader.onload = () => {
     pictureUrl = reader.result;
+    console.log(pictureUrl, 'pictureUrl');
   };
   reader.readAsDataURL(event.target.files[0]);
+  console.log(event.target.files[0], 'event.target.files[0]');
+  fileName = event.target.files[0].name;
 };
 
 
@@ -30,7 +35,7 @@ const createMemory = async (event) => {
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
       },
-      body: JSON.stringify({ picture: pictureUrl })
+      body: JSON.stringify({ picture: pictureUrl, fileName  })
     });
 
     if (!uploadResponse.ok) {
