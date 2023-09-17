@@ -1,0 +1,49 @@
+name: test
+
+
+on:
+  push:
+    branches:
+      - dev
+      - main
+  pull_request:
+
+env:
+  NODE_VERSION: 14.11.0
+  PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+  TEST_DB_URL: ${{ secrets.TEST_DB_URL }}
+  CLOUDINARY_URL: ${{ secrets.CLOUDINARY_URL }}
+
+jobs:
+  automation-tests:
+    name: Automation Tests (Backend ~ API)
+    runs-on: ubuntu-latest
+
+
+    steps:
+      - uses: actions/checkout@v2
+
+
+      - name: Set up Node JS environment ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      
+      - name: Cache root node_modules
+        uses: actions/cache@v2
+        id: root-node-modules-cache
+        with:
+            path: './node_modules'
+            key: ${{ runner.os }}-node-${{ env.NODE_VERSION }}-${{ hashFiles('package-lock.json') }}
+
+      
+      - name: Install npm dependencies
+        if: steps.root-node-modules-cache.outputs.cache-hit != 'true'
+        run: npm ci
+
+
+      - name: Run automation tests
+        run: npm test
+
+      
