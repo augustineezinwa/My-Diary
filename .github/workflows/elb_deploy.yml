@@ -1,33 +1,25 @@
-name: Deploy to Elastic Beanstalk
-
+name: Deploy to Staging
 on:
-  push:
-    branches:
-      - dev
-      - main
   pull_request:
-  
+
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Install EB CLI
-        run: |
-          sudo apt-get update
-          sudo apt-get install python3-pip -y
-          sudo pip3 install awsebcli
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-1
-      - name: Deploy to Elastic Beanstalk
-        run: |
-          eb init -p nodejs --region us-east-1
-          eb create my-node-app-env
-          eb deploy my-node-app-env
-      - name: Set up Auto Scaling
-        run: |
-          eb configure my-node-app-env --autoscaling --min-instances 2 --max-instances 10 --scale-down-triggers "AverageCPUUtilization < 30 for 5 minutes" --scale-up-triggers "AverageCPUUtilization > 70 for 5 minutes"
+
+    - name: Checkout source code
+      uses: actions/checkout@v2
+
+    - name: Generate deployment package
+      run: zip -r new_deploy.zip . -x '*.git*'
+
+    - name: Deploy to EB
+      uses: einaregilsson/beanstalk-deploy@v21
+      with:
+        aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        application_name: My-Diary
+        environment_name: my-diary-v2
+        version_label: ${{ github.sha }}
+        region: us-east-1
+        deployment_package: new_deploy.zip
